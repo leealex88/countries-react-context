@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: hsl(0, 0%, 98%);
+  --text-color: hsl(200, 15%, 8%);
+  --elements-color: hsl(0, 0%, 100%)
+}
+
+.dark-mood {
+  background-color: red;
+}
+
+.home-page {
+  background-image: url(https://images.pexels.com/photos/3769138/pexels-photo-3769138.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  margin-top: -10vh;
+}
+
+body {
+  /* background-color: var(--background-color); */
+  font-family: "Nunito Sans";
+  font-size: 14px;
+  margin: 0;
+}
+
+.navbar-container {
+  padding: 30px;
+  height: 10vh;
+  /* background-color: var(--elements-color); */
+  position: relative;
+}
+
+.navbar-wraper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-tag-titel {
+  text-decoration: none;
+  /* color: var(--text-color); */
+  font-size: 18px;
+  font-weight: 600;
+
+}
+
+.a-tag-mood {
+  text-decoration: none;
+  /* color: var(--text-color); */
+  font-size: 18px;
+  font-weight: 400;
+}
+
+img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.each-card {
+  background-color: var(--elements-color);
+}
+
+.each-card-dark {
+  background-color: var(--dark-background-color-elements);
+}
+
+.search-input {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--elements-color);
+  width: 40vh;
+
+  border: 1px solid white;
+}
+
+.select-region {
+  padding: 12px;
+  border-radius: 8px;
+  width: 20vh;
+  background-color: var(--elements-color);
+  border: 1px solid white;
+
+}
+
+.search-select-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.each-card {
+  /* border: 1px solid pink; */
+  height: 37vh;
+  margin-bottom: 55px;
+  box-shadow: 70px white;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 310px;
+  /* width: 220px; */
+}
+
+
+
+.card-info-container {
+  padding: 15px;
+}
+
+.card-info-container>p {
+  margin: 0;
+}
+
+.country-name {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.big-card-flag-image {
+  height: 40%;
+  width: 40%;
+}
+
+.button {
+  border: none;
+  height: 60px;
+  width: 260px;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Nunito Sans";
+  border-radius: 5px;
+}
+
+.button-container {
+  margin: auto
+}
+
+.small-p {
+  font-size: 12px;
+  margin: 2px;
+}
+
+.go-to-country-button {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10vh;
+}
