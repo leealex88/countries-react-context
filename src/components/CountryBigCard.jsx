@@ -6,9 +6,8 @@ const CountryBigCard = (props) => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;
 
-  const { countries } = useContext(CountriesContext);
-
-  const countryCode = props.match.params.alpha3Code;
+  const [countryCode, setCountryCode] = useState(props.match.params.alpha3Code);
+  console.log("countryCode", countryCode);
   const [singleCountry, setSingleCountry] = useState();
   console.log(singleCountry);
 
@@ -16,7 +15,7 @@ const CountryBigCard = (props) => {
     fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)
       .then((res) => res.json())
       .then((data) => setSingleCountry(data));
-  }, []);
+  }, [countryCode]);
 
   return singleCountry ? (
     <Fragment>
@@ -72,7 +71,7 @@ const CountryBigCard = (props) => {
               <div className="col-12 lg-col-12">
                 <b>Border Countries:</b>{" "}
                 {singleCountry.borders.map((country, index) => (
-                  <button onClick={() => console.log(country)} key={index}>
+                  <button onClick={() => setCountryCode(country)} key={index}>
                     {country}
                   </button>
                 ))}

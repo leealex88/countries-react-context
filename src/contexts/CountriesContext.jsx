@@ -4,6 +4,7 @@ export const CountriesContext = createContext();
 
 const CountriesContextProvider = (props) => {
   const [countries, setCountries] = useState();
+
   console.log(countries);
   useEffect(() => {
     fetch("https://restcountries.eu/rest/v2/all")
