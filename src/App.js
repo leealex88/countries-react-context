@@ -17,7 +17,7 @@ function App() {
         <ThemeContextProvider>
           <CountriesContextProvider>
             <Navbar />
-            <div className="container">
+            <div className="container search-select-container">
               <SearchInputByCountryName />
               <RegionSelect />
             </div>

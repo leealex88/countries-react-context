@@ -1,24 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { CountriesContext } from "../contexts/CountriesContext";
 
 const SearchInputByCountryName = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const { countries, setCountries } = useContext(CountriesContext);
-  console.log(searchInput);
-
-  const searchTheName =
-    searchInput &&
-    countries.filter((country) =>
-      country.name.toLowerCase().includes(searchInput.toLowerCase())
+  const { countries, setCountries, totalCountries } = useContext(
+    CountriesContext
+  );
+  // useEffect(() => {
+  //   fetchCountries();
+  //   const searchTheName =
+  //     searchInput &&
+  //     countries.filter((country) =>
+  //       country.name.toLowerCase().includes(searchInput.toLowerCase())
+  //     );
+  //   setCountries(searchTheName);
+  // }, [searchInput]);
+  const updateCountryDisplay = (input) => {
+    const searchName = totalCountries.filter((country) =>
+      country.name.toLowerCase().includes(input.toLowerCase())
     );
-  console.log("searchTheName", searchTheName);
+    setCountries(searchName);
+  };
+
   return (
     <input
       className="search-input"
       placeholder="Search for a country"
       onChange={(e) => {
-        setSearchInput(e.target.value);
-        // setCountries(searchTheName);
+        updateCountryDisplay(e.target.value);
       }}
     ></input>
   );

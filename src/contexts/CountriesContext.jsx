@@ -4,15 +4,21 @@ export const CountriesContext = createContext();
 
 const CountriesContextProvider = (props) => {
   const [countries, setCountries] = useState();
+  const [totalCountries, setTotalCountries] = useState();
 
-  console.log(countries);
   useEffect(() => {
     fetch("https://restcountries.eu/rest/v2/all")
       .then((res) => res.json())
-      .then((data) => setCountries(data));
+      .then((data) => {
+        setTotalCountries(data);
+        setCountries(data);
+      });
   }, []);
+
   return (
-    <CountriesContext.Provider value={{ countries, setCountries }}>
+    <CountriesContext.Provider
+      value={{ countries, setCountries, totalCountries }}
+    >
       {props.children}
     </CountriesContext.Provider>
   );
