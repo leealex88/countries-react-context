@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const Navbar = (props) => {
-  const { isLightTheme, light, dark, toggleTheme } = useContext(ThemeContext);
-  const theme = isLightTheme ? light : dark;
-
+  // const { isLightTheme, light, dark, toggleTheme } = useContext(ThemeContext);
+  // const theme = isLightTheme ? light : dark;
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div
       className="navbar-container"

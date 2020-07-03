@@ -12,7 +12,7 @@ const CountriesContextProvider = (props) => {
       .then((data) => setCountries(data));
   }, []);
   return (
-    <CountriesContext.Provider value={{ countries }}>
+    <CountriesContext.Provider value={{ countries, setCountries }}>
       {props.children}
     </CountriesContext.Provider>
   );

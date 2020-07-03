@@ -3,19 +3,24 @@ import { CountriesContext } from "../contexts/CountriesContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const CountryBigCard = (props) => {
-  const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const theme = isLightTheme ? light : dark;
-
+  // const { isLightTheme, light, dark } = useContext(ThemeContext);
+  // const theme = isLightTheme ? light : dark;
+  let { countries } = useContext(CountriesContext);
+  const { theme } = useContext(ThemeContext);
   const [countryCode, setCountryCode] = useState(props.match.params.alpha3Code);
   console.log("countryCode", countryCode);
   const [singleCountry, setSingleCountry] = useState();
-  console.log(singleCountry);
 
   useEffect(() => {
     fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)
       .then((res) => res.json())
       .then((data) => setSingleCountry(data));
   }, [countryCode]);
+  console.log("contextCountries", countries);
+
+  // const convertToTheCountryName = (borderCode) => {
+  //   return countries.find((country) => country.alpha3Code === borderCode);
+  // };
 
   return singleCountry ? (
     <Fragment>
@@ -70,9 +75,9 @@ const CountryBigCard = (props) => {
               </div>
               <div className="col-12 lg-col-12">
                 <b>Border Countries:</b>{" "}
-                {singleCountry.borders.map((country, index) => (
-                  <button onClick={() => setCountryCode(country)} key={index}>
-                    {country}
+                {singleCountry.borders.map((code, index) => (
+                  <button onClick={() => setCountryCode(code)} key={index}>
+                    {code}
                   </button>
                 ))}
               </div>

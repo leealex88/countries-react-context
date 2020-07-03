@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CountriesContext } from "../contexts/CountriesContext";
 
 const RegionSelect = () => {
-  const [region, setRegion] = useState();
-  console.log("region", region);
+  const { setCountries } = useContext(CountriesContext);
+  const [region, setRegion] = useState("");
 
-  //   useEffect(() => {
-  //     if (region) {
-  //       fetch(`https://restcountries.eu/rest/v2/region/${region}`)
-  //         .then((res) => res.json())
-  //         .then((data) => setRegion(data));
-  //     }
-  //   }, []);
+  useEffect(() => {
+    if (region) {
+      fetch(`https://restcountries.eu/rest/v2/region/${region}`)
+        .then((res) => res.json())
+        .then((data) => setCountries(data));
+    }
+  }, [region, setCountries]);
 
   return (
     <select

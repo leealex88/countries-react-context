@@ -4,8 +4,9 @@ import CountryCard from "./CountryCard";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const Countries = () => {
-  const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const theme = isLightTheme ? light : dark;
+  // const { isLightTheme, light, dark } = useContext(ThemeContext);
+  // const theme = isLightTheme ? light : dark;
+  const { theme } = useContext(ThemeContext);
   const { countries } = useContext(CountriesContext);
 
   return countries ? (
