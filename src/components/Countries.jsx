@@ -10,7 +10,7 @@ const Countries = () => {
   const { countries } = useContext(CountriesContext);
 
   return countries ? (
-    <div className="App" style={{ background: theme.background }}>
+    <div style={{ background: theme.background }}>
       <div className="container">
         <div className="row">
           {countries.map((country, index) => {
