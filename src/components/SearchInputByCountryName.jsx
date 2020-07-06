@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { CountriesContext } from "../contexts/CountriesContext";
 import { ThemeContext } from "../contexts/ThemeContext";
-
+import RegionSelect from "./RegionSelect";
 const SearchInputByCountryName = () => {
-  const { countries, setCountries, totalCountries } = useContext(
-    CountriesContext
-  );
+  const { setCountries, totalCountries } = useContext(CountriesContext);
   const { theme } = useContext(ThemeContext);
 
   const updateCountryDisplay = (input) => {
@@ -14,16 +12,6 @@ const SearchInputByCountryName = () => {
     );
     setCountries(searchName);
   };
-
-  const [region, setRegion] = useState("");
-
-  useEffect(() => {
-    if (region) {
-      fetch(`https://restcountries.eu/rest/v2/region/${region}`)
-        .then((res) => res.json())
-        .then((data) => setCountries(data));
-    }
-  }, [region, setCountries]);
 
   return (
     <div style={{ background: theme.background, color: theme.text }}>
@@ -40,22 +28,7 @@ const SearchInputByCountryName = () => {
               updateCountryDisplay(e.target.value);
             }}
           ></input>
-          <select
-            style={{
-              background: theme.elements,
-              color: theme.text,
-            }}
-            className="select-region"
-            value=""
-            onChange={(e) => setRegion(e.target.value)}
-          >
-            <option value="">Filter by Region</option>
-            <option>Africa</option>
-            <option>Americas</option>
-            <option>Asia</option>
-            <option>Europe</option>
-            <option>Oceania</option>
-          </select>
+          <RegionSelect />
         </div>
       </div>
     </div>

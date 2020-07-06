@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./App.css";
 import "./grid.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import CountryBigCard from "./components/CountryBigCard";
 import HomePage from "./components/HomePage";
-import SearchInputByCountryName from "./components/SearchInputByCountryName";
 
 function App() {
   return (
@@ -18,8 +17,6 @@ function App() {
           <CountriesContextProvider>
             <Navbar />
             <Route exact path="/" component={HomePage} />
-            <SearchInputByCountryName />
-
             <Switch>
               <Route exact path="/countries" component={Countries} />
               <Route

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   // const { isLightTheme, light, dark, toggleTheme } = useContext(ThemeContext);
@@ -12,7 +13,15 @@ const Navbar = (props) => {
     >
       <div className="navbar-wraper">
         <div>
-          <div className="a-tag-titel">Where in the World...</div>
+          <div className="a-tag-titel">
+            <Link
+              className="link"
+              to={{ pathname: "/" }}
+              style={{ color: theme.text }}
+            >
+              Where in the World...
+            </Link>
+          </div>
         </div>
         <div>
           <div className="a-tag-mood" onClick={toggleTheme}>
