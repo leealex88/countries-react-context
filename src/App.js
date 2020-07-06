@@ -7,8 +7,9 @@ import Countries from "./components/Countries";
 import Navbar from "./components/Navbar";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import CountryBigCard from "./components/CountryBigCard";
+import HomePage from "./components/HomePage";
 import SearchInputByCountryName from "./components/SearchInputByCountryName";
-// import RegionSelect from "./components/RegionSelect ";
+
 function App() {
   return (
     <>
@@ -16,11 +17,11 @@ function App() {
         <ThemeContextProvider>
           <CountriesContextProvider>
             <Navbar />
+            <Route exact path="/" component={HomePage} />
             <SearchInputByCountryName />
-            {/* <RegionSelect /> */}
 
             <Switch>
-              <Route exact path="/" component={Countries} />
+              <Route exact path="/countries" component={Countries} />
               <Route
                 exact
                 path="/countries/:alpha3Code"
