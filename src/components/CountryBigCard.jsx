@@ -2,27 +2,50 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import { CountriesContext } from "../contexts/CountriesContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 
+const getCountryInfo = (countryCode) => {
+  return fetch(
+    `https://restcountries.eu/rest/v2/alpha/${countryCode}`
+  ).then((res) => res.json());
+};
+
 const CountryBigCard = (props) => {
-  // const { isLightTheme, light, dark } = useContext(ThemeContext);
-  // const theme = isLightTheme ? light : dark;
   let { countries } = useContext(CountriesContext);
   const { theme } = useContext(ThemeContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [borderCountries, setBorderCountries] = useState([]);
   const [countryCode, setCountryCode] = useState(props.match.params.alpha3Code);
-  console.log("countryCode", countryCode);
   const [singleCountry, setSingleCountry] = useState();
 
   useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`)
-      .then((res) => res.json())
-      .then((data) => setSingleCountry(data));
+    getCountryInfo(countryCode).then(async (data) => {
+      setSingleCountry(data);
+
+      const promises = [];
+      data.borders.forEach((country) => {
+        promises.push(getCountryInfo(country));
+      });
+
+      const results = await Promise.allSettled(promises);
+      console.log("promises results : ", results);
+
+      const remoteDataResults = [];
+
+      results.forEach((item) => {
+        remoteDataResults.push({
+          name: item.value.name,
+          countryCode: item.value.alpha3Code,
+        });
+      });
+
+      setBorderCountries(remoteDataResults);
+      setIsLoading(false);
+    });
   }, [countryCode]);
-  console.log("contextCountries", countries);
 
-  // const convertToTheCountryName = (borderCode) => {
-  //   return countries.find((country) => country.alpha3Code === borderCode);
-  // };
+  // console.log("countries", countries);
 
-  return singleCountry ? (
+  console.log("singleCountry", singleCountry);
+  return !isLoading ? (
     <Fragment>
       <div
         className="main-big-card-div"
@@ -75,9 +98,12 @@ const CountryBigCard = (props) => {
               </div>
               <div className="col-12 lg-col-12">
                 <b>Border Countries:</b>{" "}
-                {singleCountry.borders.map((code, index) => (
-                  <button onClick={() => setCountryCode(code)} key={index}>
-                    {code}
+                {borderCountries.map((country, index) => (
+                  <button
+                    onClick={() => setCountryCode(country.countryCode)}
+                    key={index}
+                  >
+                    {country.name}
                   </button>
                 ))}
               </div>
@@ -86,7 +112,9 @@ const CountryBigCard = (props) => {
         </div>
       </div>
     </Fragment>
-  ) : null;
+  ) : (
+    <div>Loading...</div>
+  );
 };
 
 export default CountryBigCard;
