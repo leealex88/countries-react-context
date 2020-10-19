@@ -52,6 +52,8 @@ const CountryBigCard = (props) => {
         style={{ background: theme.background, color: theme.text }}
       >
         <div className="container">
+      <div></div>
+      
           <div className="row">
             <div className="col-12 lg-col-6">
               <img

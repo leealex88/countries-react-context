@@ -8,10 +8,16 @@ function HomePage() {
     <div className="home-page">
       <div className="button-container">
         <div className="go-to-country-button">
-          <Link className="link" to={{ pathname: "/countries" }}>
+          <Link
+            className="link"
+            to={{ pathname: "/countries" }}
+          >
             <button
               className="button"
-              style={{ background: theme.background, color: theme.text }}
+              style={{
+                background: theme.background,
+                color: theme.text,
+              }}
             >
               ...would you like to go?
               <p className="small-p">click and check!</p>
